@@ -7,14 +7,33 @@ import Dropdown from "./Dropdown";
 const Navbar = () => {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  const handleClick = () => {
-    setClick(!click);
-  };
+
+  const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  const onMousEnter = () => {
+    {
+      if (window.innerWidth < 960) {
+        setDropdown(false);
+      } else {
+        setDropdown(true);
+      }
+    }
+  };
+
+  const onMouseLeave = () => {
+    {
+      if (window.innerWidth < 960) {
+        setDropdown(false);
+      } else {
+        setDropdown(false);
+      }
+    }
+  };
   return (
     <>
       <nav className="navbar">
-        <Link to="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
           EPIC
         </Link>
         <div className="menu-icon" onClick={handleClick}>
@@ -26,7 +45,11 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-          <li className="nav-item">
+          <li
+            className="nav-item"
+            onMouseEnter={onMousEnter}
+            onMouseLeave={onMouseLeave}
+          >
             <Link
               to="/services"
               className="nav-links"
@@ -35,6 +58,15 @@ const Navbar = () => {
               Services <i className="fas fa-caret-down" />
             </Link>
             {dropdown && <Dropdown />}
+          </li>
+          <li className="nav-item">
+            <Link
+              to="/product-us"
+              className="nav-links"
+              onClick={closeMobileMenu}
+            >
+              Products
+            </Link>
           </li>
           <li className="nav-item">
             <Link
