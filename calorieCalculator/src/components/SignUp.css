@@ -21,7 +21,6 @@ button {
   width: 100%;
   min-height: 100vh;
   padding: 0 20px;
-  background: #2d014b;
   display: flex;
 }
 
@@ -104,7 +103,6 @@ button {
 }
 
 .hero nav {
-  background: #603bbb;
   width: 100%;
   padding: 20px 40px;
   display: flex;
@@ -114,10 +112,11 @@ button {
 
 .title {
   color: white;
-  text-align: center;
+  font-size: 100px;
 }
 
-.hero nav button {
+.hero nav .log-out {
+  text-align: right;
   width: 86px;
   padding: 8px 0;
   background: #3a2b58;

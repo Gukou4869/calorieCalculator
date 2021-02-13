@@ -14,10 +14,10 @@ export default function SignUp() {
   const [passwordError, setPasswordError] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
 
-  const clearInput = () => {
-    setUser("");
-    setEmail("");
-  };
+  // const clearInput = () => {
+  //   setUser("");
+  //   setEmail("");
+  // };
 
   const clearErrors = () => {
     setEmailError("");
@@ -74,7 +74,7 @@ export default function SignUp() {
   const authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
-        clearInput();
+        // clearInput();
         setUser(user);
       } else {
         setUser("");
@@ -89,24 +89,26 @@ export default function SignUp() {
   return (
     <>
       <div className="App">
-        {user ? (
-          <Hero handleLogout={handleLogout} nickName={nickName} />
-        ) : (
-          <Login
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-            handleLogin={handleLogin}
-            handleSignUp={handleSignUp}
-            hasAccount={hasAccount}
-            setHasAccount={setHasAccount}
-            emailError={emailError}
-            passwordError={passwordError}
-            nickName={nickName}
-            setNickName={setNickName}
-          />
-        )}
+        <div className="sign-up">
+          {user ? (
+            <Hero handleLogout={handleLogout} email={email} />
+          ) : (
+            <Login
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              handleLogin={handleLogin}
+              handleSignUp={handleSignUp}
+              hasAccount={hasAccount}
+              setHasAccount={setHasAccount}
+              emailError={emailError}
+              passwordError={passwordError}
+              nickName={nickName}
+              setNickName={setNickName}
+            />
+          )}
+        </div>
       </div>
     </>
   );
