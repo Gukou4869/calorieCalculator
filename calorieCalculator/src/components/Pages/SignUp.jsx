@@ -45,6 +45,12 @@ export default function SignUp() {
 
   const handleSignUp = () => {
     clearErrors();
+    const database = fire.database().ref("Profile");
+    const profile = {
+      name: nickName,
+      address: email,
+    };
+    database.push(profile);
     fire
       .auth()
       .createUserWithEmailAndPassword(email, password)

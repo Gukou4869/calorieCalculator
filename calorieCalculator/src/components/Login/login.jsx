@@ -16,34 +16,66 @@ const Login = (props) => {
     passwordError,
   } = props;
 
+  const toggleSign = () => {
+    if (!hasAccount) {
+      return (
+        <>
+          <label> NickName</label>
+          <input
+            type="text"
+            autoFocus
+            required
+            value={nickName}
+            onChange={(e) => setNickName(e.target.value)}
+          />
+          <label> Email</label>
+          <input
+            type="text"
+            autoFocus
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <p className="errorMsg">{emailError}</p>
+          <label>Password</label>
+          <input
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <p className="errorMsg">{passwordError}</p>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <label> Email</label>
+          <input
+            type="text"
+            autoFocus
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <p className="errorMsg">{emailError}</p>
+          <label>Password</label>
+          <input
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <p className="errorMsg">{passwordError}</p>
+        </>
+      );
+    }
+  };
+
   return (
     <section className="login">
       <div className="loginContainer">
-        <label> NickName</label>
-        <input
-          type="text"
-          autoFocus
-          required
-          value={nickName}
-          onChange={(e) => setNickName(e.target.value)}
-        />
-        <label> Email</label>
-        <input
-          type="text"
-          autoFocus
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <p className="errorMsg">{emailError}</p>
-        <label>Password</label>
-        <input
-          type="password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <p className="errorMsg">{passwordError}</p>
+        {toggleSign()}
         <div className="btnContainer">
           {hasAccount ? (
             <>
