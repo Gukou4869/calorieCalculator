@@ -3,7 +3,6 @@ import Login from "../Login/login";
 import fire from "../../firebase";
 import Hero from "../Login/hero";
 import "../SignUp.css";
-import { Link } from "react-router-dom";
 
 export default function SignUp() {
   const [nickName, setNickName] = useState("");
@@ -14,10 +13,10 @@ export default function SignUp() {
   const [passwordError, setPasswordError] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
 
-  // const clearInput = () => {
-  //   setUser("");
-  //   setEmail("");
-  // };
+  const clearInput = () => {
+    setUser("");
+    setEmail("");
+  };
 
   const clearErrors = () => {
     setEmailError("");
@@ -26,6 +25,7 @@ export default function SignUp() {
 
   const handleLogin = () => {
     clearErrors();
+    clearInput();
     fire
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -69,12 +69,14 @@ export default function SignUp() {
 
   const handleLogout = () => {
     fire.auth().signOut();
+    console.log(user);
+    console.log("shota");
   };
 
   const authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
-        // clearInput();
+        clearInput();
         setUser(user);
       } else {
         setUser("");
@@ -91,7 +93,7 @@ export default function SignUp() {
       <div className="App">
         <div className="sign-up">
           {user ? (
-            <Hero handleLogout={handleLogout} email={email} />
+            <Hero handleLogout={handleLogout} />
           ) : (
             <Login
               email={email}
